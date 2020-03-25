@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Jeopardy.Controls.ScoreBoxView"
+    x:Name="thisView"
+    HorizontalOptions="FillAndExpand">
+    <ContentView.Content>
+
+        <StackLayout
+            Orientation="Vertical"
+            Spacing="20"
+            Padding="4, 4, 4, 20">
+            
+            <Label
+                HorizontalOptions="Fill"
+                HorizontalTextAlignment="Center"
+                TextColor="White"
+                BackgroundColor="Brown"
+                Padding="0, 10"
+                Text="{Binding Points}" />
+
+            <Label
+                HorizontalOptions="Fill"
+                HorizontalTextAlignment="Center"
+                TextColor="White"
+                BackgroundColor="Brown"
+                Padding="0, 10"
+                Text="{Binding Contestant.Name}" />
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

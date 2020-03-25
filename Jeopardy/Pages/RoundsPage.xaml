@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Jeopardy.Pages"
+    x:Class="Jeopardy.Pages.RoundsPage"
+    xmlns:viewModels="clr-namespace:Jeopardy.ViewModels"
+    xmlns:vmParameters="clr-namespace:Jeopardy.VMParameters"
+    x:TypeArguments="viewModels:RoundsViewModel, vmParameters:RoundsVMParameter"
+    xmlns:local="clr-namespace:Jeopardy.Controls;assembly=Jeopardy">
+
+    <ContentPage.Content>
+
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Orientation="Vertical">
+            
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalOptions="CenterAndExpand"
+                Text="Select a round!" />
+
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="CenterAndExpand"
+                BindableLayout.ItemsSource="{Binding Rounds}"
+                Spacing="30">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+
+                        <Button
+                            Text="{Binding Round.Name}"
+                            Command="{Binding ActionCommand}"
+                            CommandParameter="{Binding .}"/>
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                BindableLayout.ItemsSource="{Binding ContestantsPoints}">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+
+                        <local:ScoreBoxView BindingContext="{Binding .}"  />
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </StackLayout>
+
+            <local:BoardView
+                HorizontalOptions="FillAndExpand"
+                BindingContext="{Binding CategoryItems}" />
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</pages:BaseContentPage>

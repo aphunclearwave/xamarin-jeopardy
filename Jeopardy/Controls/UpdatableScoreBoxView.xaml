@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Jeopardy.Controls.UpdatableScoreBoxView">
+    <ContentView.Content>
+
+        <StackLayout
+            Orientation="Vertical"
+            HorizontalOptions="FillAndExpand"
+            Spacing="20"
+            Padding="10">
+
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding ContestantPoint.Points}" />
+
+            <Label
+                HorizontalOptions="Center"
+                Text="{Binding ContestantPoint.Contestant.Name}" />
+
+            <Button
+                Text="Correct"
+                Command="{Binding SetCorrectPointsCommand}"
+                IsEnabled="{Binding ShowCorrectButton}"/>
+
+            <Button
+                Text="Wrong"
+                Command="{Binding SetWrongPointsCommand}"
+                IsEnabled="{Binding ShowWrongButton}"/>
+
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

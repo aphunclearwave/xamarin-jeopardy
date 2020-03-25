@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Jeopardy.Controls.BoardView">
+    <ContentView.Content>
+
+        <StackLayout
+            Orientation="Horizontal"
+            HorizontalOptions="FillAndExpand"
+            BindableLayout.ItemsSource="{Binding .}">
+
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Vertical">
+
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="{Binding Category.Name}" />
+                            
+                        <StackLayout
+                            Orientation="Vertical"
+                            BindableLayout.ItemsSource="{Binding DifficultyItems}"
+                            Spacing="30">
+
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Button
+                                        Text="{Binding CategoryDifficulty.Points}"
+                                        Command="{Binding ActionCommand}"
+                                        CommandParameter="{Binding .}"/>
+
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

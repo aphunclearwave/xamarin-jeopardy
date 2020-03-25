@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Jeopardy.App">
+    <Application.Resources>
+
+        <ResourceDictionary>
+            <Color x:Key="NavigationPrimary">#000000</Color>
+
+            <Style TargetType="NavigationPage">
+                <Setter
+                    Property="BarBackgroundColor"
+                    Value="#000000" />
+                <Setter
+                    Property="BarTextColor"
+                    Value="White" />
+            </Style>
+
+            <ControlTemplate x:Key="PageWithBgTemplate">
+                <AbsoluteLayout>
+                    <!-- display an image in the background; order of items matter so this image needs to be listed first -->
+                    <Image
+                        AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                        AbsoluteLayout.LayoutFlags="All"
+                        Source="jeopardy_bg.jpg"
+                        Aspect="AspectFill"/>
+
+                    <!-- display whatever is defined in the original page view here -->
+                    <ContentPresenter x:Name="ContentPresenter"
+                        AbsoluteLayout.LayoutBounds="0,0,1,1" 
+                        AbsoluteLayout.LayoutFlags="All"/>
+                </AbsoluteLayout>
+
+            </ControlTemplate>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>

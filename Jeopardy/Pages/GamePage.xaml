@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Jeopardy.Pages"
+    x:Class="Jeopardy.Pages.GamePage"
+    xmlns:viewModels="clr-namespace:Jeopardy.ViewModels"
+    xmlns:vmParameters="clr-namespace:Jeopardy.VMParameters"
+    x:TypeArguments="viewModels:GameViewModel, vmParameters:GameVMParameter"
+    xmlns:local="clr-namespace:Jeopardy.Controls;assembly=Jeopardy">
+
+    <ContentPage.Content>
+
+        <StackLayout
+            Orientation="Vertical"
+            HorizontalOptions="FillAndExpand">
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding GameTitle}" />
+
+            <Button
+                Text="Play Game!"
+                Command="{Binding PlayGameCommand}"/>
+
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="FillAndExpand"
+                Margin="20"
+                Spacing="20"
+                BindableLayout.ItemsSource="{Binding ContestantsPoints}">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+
+                        <local:ScoreBoxView
+                            HorizontalOptions="FillAndExpand"
+                            Padding="10"
+                            BackgroundColor="Blue"
+                            BindingContext="{Binding .}" />
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</pages:BaseContentPage>

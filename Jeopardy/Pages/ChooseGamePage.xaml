@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Jeopardy.Pages"
+    x:Class="Jeopardy.Pages.ChooseGamePage"
+    xmlns:viewModels="clr-namespace:Jeopardy.ViewModels"
+    x:TypeArguments="viewModels:ChooseGameViewModel"
+    xmlns:local="clr-namespace:Jeopardy.Controls;assembly=Jeopardy"
+    ControlTemplate="{StaticResource PageWithBgTemplate}">
+
+    <ContentPage.Content>
+        <Grid
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            AbsoluteLayout.LayoutFlags="All"
+            Padding="20"
+            IsVisible="true">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Row="0"
+                Grid.Column="0"
+                TextColor="White"
+                HorizontalOptions="CenterAndExpand"
+                Text="Choose a game:" />
+
+            <local:ExListView
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="Transparent"
+                ItemsSource="{Binding GameItems}"
+                ItemClick="{Binding SelectGameCommand}"
+                RefreshCommand="{Binding RefreshCommand}"
+                IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}"
+                IsPullToRefreshEnabled="true">
+
+                <local:ExListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <ContentView>
+                                    <Label
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="CenterAndExpand"
+                                        TextColor="White"
+                                        Text="{Binding Title}" />
+                                </ContentView>
+                            </ViewCell.View>
+
+                            <ViewCell.ContextActions>
+                                <MenuItem
+                                    IsEnabled="{Binding IsDeletable}"
+                                    Command="{Binding DeleteCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Text="Delete"
+                                    IsDestructive="True" />
+                            </ViewCell.ContextActions>
+                        </ViewCell>
+                    </DataTemplate>
+                </local:ExListView.ItemTemplate>
+            </local:ExListView>
+
+        </Grid>
+
+    </ContentPage.Content>
+</pages:BaseContentPage>

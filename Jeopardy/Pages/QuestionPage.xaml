@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Jeopardy.Pages"
+    x:Class="Jeopardy.Pages.QuestionPage"
+    xmlns:viewModels="clr-namespace:Jeopardy.ViewModels"
+    xmlns:vmParameters="clr-namespace:Jeopardy.VMParameters"
+    x:TypeArguments="viewModels:QuestionViewModel, vmParameters:QuestionVMParameter"
+    xmlns:local="clr-namespace:Jeopardy.Controls;assembly=Jeopardy">
+
+    <ContentPage.Content>
+
+        <StackLayout
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Orientation="Vertical">
+
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="CenterAndExpand"
+                Spacing="100">
+
+                <Label Text="{Binding Points}"/>
+
+                <Label Text="{Binding CategoryName}" />
+
+                <Label Text="{Binding QuestionId}" />
+
+            </StackLayout>
+
+            <!-- only when the question shows -->
+            <StackLayout
+                Orientation="Vertical"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="{Binding ShowQuestionOnly}">
+
+                <Label Text="Question:" />
+
+                <Label Text="{Binding Question.QuestionText}" />
+
+            </StackLayout>
+
+            <!-- when the question and answer shows -->
+            <StackLayout
+                Orientation="Vertical"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="{Binding ShowAnswer}">
+
+                <Label Text="Question:" />
+
+                <Label Text="{Binding Question.QuestionText}" />
+
+                <Label Text="Answer:" />
+
+                <Label Text="{Binding Question.AnswerText}" />
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                BindableLayout.ItemsSource="{Binding ContestantsPoints}"
+                Spacing="40"
+                IsVisible="{Binding ShowScores}">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+
+                        <local:UpdatableScoreBoxView
+                            HorizontalOptions="CenterAndExpand"
+                            BindingContext="{Binding .}"  />
+
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="EndAndExpand"
+                Spacing="60">
+
+                <Button
+                    Text="See Question Only"
+                    Command="{Binding SeeQuestionOnlyCommand}"/>
+
+                <Button
+                    Text="See Answer"
+                    Command="{Binding SeeAnswerCommand}"/>
+
+                <Button
+                    Text="Set Scores"
+                    Command="{Binding SetScoresCommand}"/>
+
+                <Button
+                    Text="Back"
+                    Command="{Binding BackCommand}"/>
+
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</pages:BaseContentPage>
